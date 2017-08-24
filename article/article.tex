@@ -1,6 +1,6 @@
 \documentclass[UTF8]{ctexart}
 \author{李昂}
-\title{基于卷积神经网络的图像识别}
+\title{基于卷积神经网络的猫类图像识别}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{url}
@@ -39,7 +39,37 @@
 
 \clearpage
 
-\section{问题背景与分析}
-\subsection{背景}
+\section{题目重述}
+给定一个已经标记有 “猫” 和 “非猫” 的训练数据集（Training Dataset）以及一个结构类似的测试数据集（Testing Dataset），建立一个简单的图像识别模型来准确地将猫的图片与其他的图片进行分类。每个图像都具有固定宽度与长度、以 RGB 值来表示每个像素。
+
+\section{符号说明}
+
+\section{基本假设}
+
+\section{问题分析}
+题目中 Training Set 给出了三组数据，除 list\_classes 为介绍说明之外，其余两组分别为训练图像与标签。其中 training\_set\_x 是一个 $209 \times 64 \times 64 \times 3$ 的四维向量空间，即 209 个图像中，每个图像均为 $64 \times 64$ 像素，每个像素由一组 RGB 值（8-bit, 0-255）表示。以下为单个图像降维之后的向量表示样例：
+
+而且 Training Set 之中每个图像（第一维度的 209 个）都有 label（training\_set\_y）对应。根据如上的 Training Set 与 Test Set 的数据特征，我们引入卷积神经网络来提取并学习图像的特征。
+
+\section{模型建立}
+
+
+\section{模型求解}
+
+
+\section{模型评价与推广}
+
+\clearpage
+\appendix
+\appendixname
+\section{程序源码}
+带有运行结果的源码与部分互动界面可以通过 Jupyter Notebook 打开根文件夹中的 /code 文件夹内的 ipynb 文件来查看。
+
+以下代码均为 Python 语言（Python 3）。
+
+\section{关于训练模型的说明}
+\begin{enumerate}
+\item 受制于计算机运行能力（Intel i5, 2.70GHz，超频 3.10GHz，无独立显卡）带来的运行时间，模型最终确定为两层卷积与两层前馈的卷积神经网络。
+\end{enumerate}
 
 \end{document}
