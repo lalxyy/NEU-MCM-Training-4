@@ -1,6 +1,6 @@
 \documentclass[UTF8]{ctexart}
 \author{李昂}
-\title{基于卷积神经网络的猫类图像识别}
+\title{基于 TensorFlow 卷积神经网络的猫类图像识别}
 \usepackage{amsmath}
 \usepackage{amssymb}
 \usepackage{url}
@@ -52,7 +52,9 @@
 而且 Training Set 之中每个图像（第一维度的 209 个）都有 label（training\_set\_y）对应。根据如上的 Training Set 与 Test Set 的数据特征，我们引入卷积神经网络来提取并学习图像的特征。
 
 \section{模型建立}
+考虑到过于复杂的神经网络模型会导致时间开销过大，我们建立了两层卷积层（Convolution Layer，每层包含池化过程）、两层普通前馈层（Feed-Forward Layer）的神经网络，并定义卷积核为 $5 \times 5$ 大小，并使用 Python 语言与 TensorFlow 框架编写程序。
 
+其中第一层卷积层导出 32 层卷积核，作为提取的特征的一部分输入到池化 / 下一层卷积过程中。第二层卷积层导出 64 层卷积核，并通过 reshape 过程将两层卷积 / 池化导出的 $5 \times 5 \times 64$ 卷积核展开，导入
 
 \section{模型求解}
 
