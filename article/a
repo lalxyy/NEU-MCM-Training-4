@@ -1,0 +1,14 @@
+\documentclass[UTF8]{ctexart}
+\usepackage{booktabs}
+\begin{document}
+\begin{center}
+\begin{tabular}{cc}
+\toprule
+ab & b \\ 
+\midrule
+c & df\\
+ghi & jkm\\
+\bottomrule
+\end{tabular}
+\end{center}
+\end{document}
