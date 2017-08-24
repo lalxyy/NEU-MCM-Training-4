@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2017.4.24)  24 AUG 2017 11:20
+This is XeTeX, Version 3.14159265-2.6-0.99996 (TeX Live 2016) (preloaded format=xelatex 2017.4.24)  24 AUG 2017 19:26
 entering extended mode
  restricted \write18 enabled.
  %&-line parsing enabled.
@@ -1471,16 +1471,16 @@ File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 ] [2
 
 ]
-[3
+[3] [4] [5
 
 ] (./article.aux) ) 
 Here is how much of TeX's memory you used:
- 23612 strings out of 493591
- 470612 string characters out of 6143546
- 441754 words of memory out of 5000000
- 26778 multiletter control sequences out of 15000+600000
- 11430 words of font info for 70 fonts, out of 8000000 for 9000
+ 23631 strings out of 493591
+ 471655 string characters out of 6143546
+ 448766 words of memory out of 5000000
+ 26795 multiletter control sequences out of 15000+600000
+ 11446 words of font info for 72 fonts, out of 8000000 for 9000
  1347 hyphenation exceptions out of 8191
- 65i,11n,77p,10424b,276s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 65i,12n,77p,10424b,276s stack positions out of 5000i,500n,10000p,200000b,80000s
 
-Output written on article.xdv (3 pages, 13688 bytes).
+Output written on article.xdv (5 pages, 35576 bytes).
