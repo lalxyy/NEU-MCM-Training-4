@@ -44,6 +44,7 @@
 
 \section{符号说明}
 
+
 \section{基本假设}
 
 \section{问题分析}
@@ -60,33 +61,33 @@
 对于两个参与卷积运算的矩阵
 $$
 A = 
-\left\{
+\left[
 \begin{matrix}
 a_{11} & a_{12} & ... & a_{1m} \\
 a_{21} & a_{22} & ... & a_{2m} \\
 ... & ... & ... & ... \\
 a_{m1} & a_{m2} & ... & a_{mm}
 \end{matrix}
-\right\}
+\right]
 , B = 
-\left\{
+\left[
 \begin{matrix}
 b_{11} & b_{12} & ... & b_{1n} \\
 b_{21} & b_{22} & ... & b_{2n} \\
 ... & ... & ... & ... \\
 b_{n1} & b_{n2} & ... & b_{nn}
 \end{matrix}
-\right\}
+\right]
 $$
 （满足 $m > n$），将卷积核 $B$ 在二维平面上平移，并且卷积核的每个元素与被卷积图像对应位置相乘，再求和。
 $$
 A * B = 
 \left[
 \begin{matrix}
-\sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i-n+1, j-n+1} & \sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i-n+1, j-n+2} & ... & \sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i-n+1, j} \\
-\sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i-n+2, j-n+1} & \sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i-n+2, j-n+2} & ... & \sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i-n+2, j} \\
+\sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i-n+1, j-n+1} & \sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i-n+1, j-n+2} & ... & \sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i-n+1, j} \\
+\sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i-n+2, j-n+1} & \sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i-n+2, j-n+2} & ... & \sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i-n+2, j} \\
 ... & ... & ... & ... \\
-\sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i, j-n+1} & \sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{i, j-n+2} & ... & \sum_{i = n}^{m}\sum_{j = n}^{m}b_{ij}a_{ij}
+\sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i, j-n+1} & \sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{i, j-n+2} & ... & \sum_{i = m - n + 1}^{m}\sum_{j = m - n + 1}^{m}b_{ij}a_{ij}
 \end{matrix}
 \right]
 $$
@@ -113,11 +114,30 @@ $$y = \frac{1}{1 + e^{\omega \cdot a}}$$
 在解决这一问题的过程中，我们采用了 2 层前馈网络。第一层为输入层（在整个网络中是隐藏层），接收上一层卷积 / 池化层输入的特征；第二层则为整个网络中最终的输出层，通过一个神经元输出最终的 0 和 1。
 
 \section{模型求解}
+随机初始化路径权值 $\omega = (\omega_1, ..., \omega_n)$，并且服从 $\mu = 0.2, \sigma = 0.1$ 的正态分布。
+遍历训练数据集（train\_catvnoncat.h5 文件中的 train\_set\_x、train\_set\_y）部分。
+对于单个图像 $A_m$，首先将其与预设置的 $5 \times 5$ 卷积核 $B$ 进行步长为 1 的卷积，得到该层输出
+$$A * B = C^{(1,1)}_{62 \times 62}$$
+，其中 $C$ 为该卷积层输出 32 层的其中一层；进入第一层池化进行最大池化方案（max-pooling）：
+$$\mathcal{A}^{(1)}(C^{(1,1)}_{62 \times 62}) = C^{(1,2)}_{32 \times 32}$$
+第二层卷积 / 池化类似：
+$$C^{(1,2)}_{32 \times 32} * B = C^{(2,1)}_{30 \times 30}$$
+$$\mathcal{A}^{(2)}(C^{(2,1)}_{30 \times 30}) = C^{(2,2)}_{16 \times 16}$$
+，其中 $C$ 为该卷积层输出 64 层中的其中一层。至此完成卷积、数据提取过程。
 
+将 64 层 $C^{(2,2)}_{16 \times 16}$ 展开为一维向量
+$$\mathcal{B}(64C^{(2,2)}_{16 \times 16}) = c^{(3)}_{16384 \times 1}$$
+，其中 $16384 = 64 \times 16 \times 16$；并且使 $c^{(3)}$ 各维度 与 4096 个前馈神经元全连接。对于单个该层神经元 $K^{(1)}$ 则会产生输出
+$$K^{(1)} = \frac{1}{1 + e^{\omega^{(3)} \cdot c^{(3)}}}$$
+，最终输出层则为
+$$K^{(2)} = \frac{1}{1 + e^{\omega^{(4)} \cdot K^{(1)}}}$$
+。实际运行中，以上过程对于单一数据集进行了 15 次遍历（TODO 引用），以在防止过拟合的情况下获得最佳结果。
 
 \section{模型检验}
+我们在以上计算机求解过程中，每次遍历完成后都会通过 test\_catvnoncat.h5 文件中的数据集检验一次运行情况。15 次的全部运行情况如下：
 
 \section{模型评价与推广}
+
 
 \clearpage
 \appendix

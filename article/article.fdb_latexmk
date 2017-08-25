@@ -1,11 +1,11 @@
 # Fdb version 3
-["xdvipdfmx"] 1503574017 "article.xdv" "article.pdf" "article" 1503574018
-  "article.xdv" 1503574017 35576 b6ba90dc70d845b2651d1c7017a36a6f "xelatex"
+["xdvipdfmx"] 1503578076 "article.xdv" "article.pdf" "article" 1503578076
+  "article.xdv" 1503578076 42956 51132635c0204c806b78ffcf7d7f16f1 "xelatex"
   (generated)
   "article.pdf"
-["xelatex"] 1503574015 "article.tex" "article.xdv" "article" 1503574018
+["xelatex"] 1503578074 "article.tex" "article.xdv" "article" 1503578076
   "/Library/Fonts/Songti.ttc" 1470021522 66954320 afb3198e641fa1b263f1b34aa518e75d ""
-  "/dev/null" 1503574012 0 d41d8cd98f00b204e9800998ecf8427e ""
+  "/dev/null" 1503578076 0 d41d8cd98f00b204e9800998ecf8427e ""
   "/usr/local/texlive/2016/texmf-dist/fonts/map/fontname/texfonts.map" 1272929888 3287 e6b82fe08f5336d4d5ebc73fb1152e87 ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex7.tfm" 1246382020 1004 54797486969f23fa377b128694d548df ""
   "/usr/local/texlive/2016/texmf-dist/fonts/tfm/public/amsfonts/cmextra/cmex8.tfm" 1246382020 988 bdf658c3bfc2d96d3c8b02cfc1c94c20 ""
@@ -111,9 +111,9 @@
   "/usr/local/texlive/2016/texmf-dist/web2c/texmf.cnf" 1463093894 31953 b9489e6e586f798610c60aec1f5ec548 ""
   "/usr/local/texlive/2016/texmf-var/web2c/xetex/xelatex.fmt" 1493039071 3520378 25108d3a750042e6ccab104034cedc0e ""
   "/usr/local/texlive/2016/texmf.cnf" 1463979140 577 2938757e76f31531e65cc647e3507693 ""
-  "article.aux" 1503574017 963 af6faadb7488281b907d8026a39d4db2 ""
-  "article.tex" 1503574015 6652 b6b3a1f636cd5023233511830ca42f5f ""
+  "article.aux" 1503578076 963 af6faadb7488281b907d8026a39d4db2 ""
+  "article.tex" 1503578074 8295 2317498ae877dc40b4ee3b0cb198d907 ""
   (generated)
+  "article.aux"
   "article.xdv"
   "article.log"
-  "article.aux"
